@@ -49,42 +49,50 @@ Users should receive a text message to a provided number whenever one of the fol
 ===================
 ##### (searching for spaces to rent)
 ```
+1)
 As a user
 So I can sign up on the homepage
 I want to sign up for an account with my email address and password
-```
 
-```
+2)
 As a signed-up user
 So I can use the website
 I want to be able to login with my login details
-```
-```
+
+3)
 As a signed-up user
 I want to view a list of spaces
-```
-```
+
+4)
+As a signed-up user
+I want to view a space in more detail
+
+5)
 As a signed-up user
 I want to be able to request to hire a space
-```
+
 ##### (renting out spaces)
-```
+
+6)
 As a signed-up user
 So I can offer my space
 I need to be able to list a new space with name, description and price/night.
-```
-<!-- As a signed-up user
-So I can offer my space
-I need to be able to add available dates for each space. -->
 
-```
+<!-- As a signed-up user
+
+7)
 As a signed-up user
 I want to be notified of requests to hire my spaces
-```
-```
+
+8)
 As a signed-up user
 So I can not get murdered
 I want to be able to approve or refuse requests to hire a space
+
+9)
+So I can offer my space
+I need to be able to add available dates for each space. -->
+
 ```
 
 ### 3. Outline of MVP
