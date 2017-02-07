@@ -8,7 +8,7 @@ feature 'User log in.' do
 
   scenario 'I can log in to my account' do
     visit '/'
-    click_button 'Log In'
+    click_button 'Sign In'
     expect(page).to have_content ("Log in to Makersbnb")
     login
     expect(page).to have_content('Welcome, rob@example.com')
