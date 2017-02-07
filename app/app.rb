@@ -25,6 +25,13 @@ enable :sessions
     erb :'spaces' #added this
   end
 
+  # post '/viewspace' do
+    get '/spaces/:id' do |id|
+      @space = Space.all(:id => id).spaces
+      erb :'viewspace'
+    end
+  # end
+
   get '/newspace' do
 
   end

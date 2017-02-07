@@ -7,6 +7,9 @@
         <li>
             <%= space.name %>
         </li>
+        <form action="/spaces/<%=space.id%>" method="post">
+          <button id="<% space.id %>" type="submit" value="space.id">View</button>
+        </form>
         <% end %>
     </ul>
   </body>
