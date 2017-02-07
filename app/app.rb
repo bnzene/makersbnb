@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] ||= "development"
+ENV["RACK_ENV"] ||= "test"
 
 
 require 'sinatra/base'
@@ -21,7 +21,8 @@ enable :sessions
   end
 
   get '/spaces' do
-
+    @spaces = Space.all
+    erb :'spaces' #added this
   end
 
   get '/newspace' do
