@@ -9,11 +9,17 @@ require 'sinatra/flash'
 class Makersbnb < Sinatra::Base
 
 set :session_secret, 'super secret'
-register Sinatra::Flash
+
 enable :sessions
 
   get '/' do
-    'Hello Makersbnb!'
+     erb :index
+  end
+
+  post '/user' do
+    user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    session[:user_id] = user.id
+    redirect '/spaces'
   end
 
   get '/login' do
