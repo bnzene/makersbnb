@@ -20,6 +20,10 @@ helpers do
  end
 end
 
+  get '/' do
+
+    erb :"index"
+  end
 
   get '/users/new' do
     @user = User.new
