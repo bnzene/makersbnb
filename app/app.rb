@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] ||= "development"
+ENV["RACK_ENV"] ||= "test"
 
 
 require 'sinatra/base'
@@ -21,16 +21,34 @@ enable :sessions
   end
 
   get '/spaces' do
-
+    @spaces = Space.all
+    erb :'spaces' #added this
   end
 
-  get '/newspace' do
+  # post '/viewspace' do
+    get '/spaces/:id' do
+      @space = Space.first(id: params[:id])
+      erb :'viewspace'
+    end
+  # end
 
+  get '/listspace' do
+
+    erb :'newspace'
   end
 
-  get '/listingconfirmed' do
-
+  post '/listingconfirmed' do
+    @space = Space.create(name: params[:name], description: params[:description], price: params[:price])
+    @id =  @space.id
+    redirect "/listingconfirmed/#{@id}"
   end
+
+  get '/listingconfirmed/:id' do |id|
+    @space = Space.first(id: id)
+    erb :"listingconfirmed"
+  end
+
+
 
 
 

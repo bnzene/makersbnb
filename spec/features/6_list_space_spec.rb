@@ -6,7 +6,7 @@
 feature "FEATURE 6: View space detail" do
 
   scenario '1) List a new space' do
-    visit '/newspace'
+    visit '/listspace'
     fill_in :name, with: 'Brooklyn loft apartment'
     fill_in :description, with: '3 bed apartment'
     fill_in :price, with: '80'

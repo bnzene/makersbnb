@@ -1,0 +1,15 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <ul id="spaces">
+      <% @spaces.each do |space| %>
+
+        <li>
+            <%= space.name %>
+            <a class='<%=space.id%>' href='/spaces/<%=space.id%>'<button>View</button></a>
+        </li>
+        <% end %>
+    </ul>
+  </body>
+</html>
