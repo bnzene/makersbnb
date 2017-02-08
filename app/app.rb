@@ -26,19 +26,29 @@ enable :sessions
   end
 
   # post '/viewspace' do
-    get '/spaces/:id' do |id|
+    get '/spaces/:id' do
       @space = Space.first(id: params[:id])
       erb :'viewspace'
     end
   # end
 
-  get '/newspace' do
+  get '/listspace' do
 
+    erb :'newspace'
   end
 
   post '/listingconfirmed' do
-    
+    @space = Space.create(name: params[:name], description: params[:description], price: params[:price])
+    @id =  @space.id
+    redirect "/listingconfirmed/#{@id}"
   end
+
+  get '/listingconfirmed/:id' do |id|
+    @space = Space.first(id: id)
+    erb :"listingconfirmed"
+  end
+
+
 
 
 
