@@ -27,7 +27,7 @@ enable :sessions
 
   # post '/viewspace' do
     get '/spaces/:id' do |id|
-      @space = Space.all(:id => id).spaces
+      @space = Space.first(id: params[:id])
       erb :'viewspace'
     end
   # end
@@ -36,8 +36,8 @@ enable :sessions
 
   end
 
-  get '/listingconfirmed' do
-
+  post '/listingconfirmed' do
+    
   end
 
 

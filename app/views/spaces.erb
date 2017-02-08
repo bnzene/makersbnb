@@ -4,12 +4,11 @@
   <body>
     <ul id="spaces">
       <% @spaces.each do |space| %>
+
         <li>
             <%= space.name %>
+            <a class='<%=space.id%>' href='/spaces/<%=space.id%>'<button>View</button></a>
         </li>
-        <form action="/spaces/<%=space.id%>" method="post">
-          <button id="<% space.id %>" type="submit" value="space.id">View</button>
-        </form>
         <% end %>
     </ul>
   </body>
