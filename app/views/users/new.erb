@@ -1,0 +1,42 @@
+
+<html>
+<head>
+<style>
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+
+</body>
+</html>
+
+
+<h1> Welcome to Makersbnb! </h1>
+
+<h2> Sign Up </h2>
+
+<form action='/users' method='post'>
+  <label for='email'>
+  Email: <input name='email' type='email' value='<%= @user.email %>'>
+</label>
+<label for='password'>
+  Password: <input type='password' name='password'>
+</label>
+<label for='password_confirmation'>
+  Password confirmation: <input type='password' name='password_confirmation'>
+</label>
+<input type='submit' name='Sign up' value='Sign up'>
+</form>

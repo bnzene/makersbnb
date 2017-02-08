@@ -1,0 +1,32 @@
+<html>
+<style>
+body {
+    background-color: skyblue;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-family: futura;
+    font-size: 20px;
+}
+
+p {
+    font-family: futura;
+    font-size: 20px;
+}
+</style>
+</head>
+
+<h1>Please login</h1>
+
+<form action='/sessions' method='post'>
+  <label for='email'>
+    Email: <input name='email' type='email'>
+  </label>
+  <label for='password'>
+    Password: <input name='password' type='password'>
+  </label>
+  <input type='submit' name='Sign in' value='Sign in'>
+</form>
+</html>

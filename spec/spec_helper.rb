@@ -9,6 +9,8 @@ require 'capybara/rspec'
 require 'rspec'
 require 'web_helper'
 require './app/datamapper_setup'
+require 'shoulda'
+require 'sinatra/flash'
 
 require './app/models/user'
 require './app/models/space'
