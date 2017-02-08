@@ -13,6 +13,7 @@ gem "sinatra-flash"
 gem "bcrypt"
 gem "rake"
 gem "pg"
+gem "shoulda"
 
 group :test do
 gem "rspec"
