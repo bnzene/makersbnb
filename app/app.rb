@@ -36,7 +36,7 @@ end
              password_confirmation: params[:password_confirmation])
     if @user.save
     session[:user_id] = @user.id
-    redirect to('/spaces')
+    redirect to('/myrequests')
     else
       # flash.next[:notice] = "Password and confirmation password do not match"
       redirect ('/users/new')
@@ -44,23 +44,18 @@ end
   end
 
   get '/sessions/new' do
-  erb :'sessions/new'
-end
-
-post '/sessions' do
-  @user = User.authenticate(params[:email], params[:password])
-  if @user
-    session[:user_id] = @user.id
-    redirect to('/spaces')
-  else
-    # flash.now[:errors] = ['The email or password is incorrect']
     erb :'sessions/new'
   end
-end
 
-
-  get '/login' do
-
+  post '/sessions' do
+    @user = User.authenticate(params[:email], params[:password])
+    if @user
+      session[:user_id] = @user.id
+      redirect to('/myrequests')
+    else
+    # flash.now[:errors] = ['The email or password is incorrect']
+      erb :'sessions/new'
+    end
   end
 
   get '/spaces' do
@@ -83,10 +78,10 @@ end
 
 
   # post '/viewspace' do
-    get '/spaces/:id' do
-      @space = Space.first(id: params[:id])
-      erb :'spaces/viewspace'
-    end
+  get '/spaces/:id' do
+    @space = Space.first(id: params[:id])
+    erb :'spaces/viewspace'
+  end
   # end
 
   get '/listspace' do
@@ -108,7 +103,9 @@ end
     erb :"spaces/listingconfirmed"
   end
 
-
+  get '/myrequests' do
+    erb :'/sessions/myrequests'
+  end
 
 
 
