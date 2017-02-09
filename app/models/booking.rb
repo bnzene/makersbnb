@@ -7,6 +7,6 @@ class Booking
   property :date_to, Date, required: true
   property :customer_id, Serial, required: true
   property :space_id, Serial, required: true
-  
+  property :status, Boolean
 
 end
