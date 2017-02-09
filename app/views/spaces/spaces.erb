@@ -2,6 +2,20 @@
   <head>
   </head>
   <body>
+    <form action='/spaces' method='POST'>
+      <label for='date from'>
+        Enter a start date:<br>
+        <input type="date" name="date_from"><br><br>
+      </label>
+      <label for='date to'>
+        Enter an end date:<br>
+        <input type="date" name="date_to"><br><br>
+      </label>
+      <input type='submit' value='Show available spaces'>
+
+    </form>
+
+
     <ul id="spaces">
       <% @spaces.each do |space| %>
 
