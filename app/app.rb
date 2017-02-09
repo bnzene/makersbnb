@@ -68,6 +68,20 @@ end
     erb :'spaces/spaces' #added this
   end
 
+  # post '/spaces' do
+  #   @space = Space.all(:date_from => params[:date_from]) + Space.all(:date_to => params[:date_to])
+  #   redirect "/spaces"
+  # end
+
+  ## WERE HERE!!
+  post '/spaces' do
+    # @space = Space.all(:date_from => "#{df}") + Space.all(:date_to => "#{dt}")
+    @space = Space.all(date_from: 'params[:date_from]') + Space.all(date_to: 'params[:date_from]')
+    redirect "/spaces"
+  end
+
+
+
   # post '/viewspace' do
     get '/spaces/:id' do
       @space = Space.first(id: params[:id])
@@ -76,12 +90,11 @@ end
   # end
 
   get '/listspace' do
-
     erb :'spaces/newspace'
   end
 
   post '/listingconfirmed' do
-    @space = Space.create(name: params[:name], description: params[:description], price: params[:price])
+    @space = Space.create(name: params[:name], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
     @id =  @space.id
     if @space.save
       redirect "/listingconfirmed/#{@id}"
