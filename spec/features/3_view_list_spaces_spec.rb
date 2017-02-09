@@ -8,7 +8,7 @@ feature "FEATURE 3: View list of spaces" do
 
     Space.create(name: 'Brooklyn loft apartment', description: '3 bed apartment', price: '80')
 
-    visit '/spaces'
+    visit 'spaces'
 
     # this is a *temporary* sanity check - to make sure we
     # can load the page :)

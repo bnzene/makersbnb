@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] ||= "test"
+ENV["RACK_ENV"] ||= "development"
 
 
 require 'sinatra/base'
@@ -65,30 +65,34 @@ end
 
   get '/spaces' do
     @spaces = Space.all
-    erb :'spaces' #added this
+    erb :'spaces/spaces' #added this
   end
 
   # post '/viewspace' do
     get '/spaces/:id' do
       @space = Space.first(id: params[:id])
-      erb :'viewspace'
+      erb :'spaces/viewspace'
     end
   # end
 
   get '/listspace' do
 
-    erb :'newspace'
+    erb :'spaces/newspace'
   end
 
   post '/listingconfirmed' do
     @space = Space.create(name: params[:name], description: params[:description], price: params[:price])
     @id =  @space.id
-    redirect "/listingconfirmed/#{@id}"
+    if @space.save
+      redirect "/listingconfirmed/#{@id}"
+    else
+      redirect ('/listspace')
+    end
   end
 
   get '/listingconfirmed/:id' do |id|
     @space = Space.first(id: id)
-    erb :"listingconfirmed"
+    erb :"spaces/listingconfirmed"
   end
 
 

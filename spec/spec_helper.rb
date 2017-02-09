@@ -4,6 +4,7 @@ ENV['RACK_ENV'] = 'test'
 require File.join(File.dirname(__FILE__), '..', 'app/app.rb')
 
 require 'capybara'
+require 'dm-transactions'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'rspec'
