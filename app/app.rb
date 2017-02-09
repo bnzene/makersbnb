@@ -82,7 +82,11 @@ end
     @space = Space.first(id: params[:id])
     erb :'spaces/viewspace'
   end
-  # end
+
+  get '/booking_acknowledged/:id' do
+
+    erb :booking_acknowledged
+  end
 
   get '/listspace' do
     erb :'spaces/newspace'
@@ -103,7 +107,7 @@ end
     erb :"spaces/listingconfirmed"
   end
 
-  get '/myrequests' do
+  get '/mybookings' do
     erb :'/sessions/myrequests'
   end
 

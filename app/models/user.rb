@@ -11,6 +11,12 @@ class User
   property :email, String, required: true, unique: true
   property :password_digest, Text
 
+  has n, :received_bookings, :through => :spaces
+  has n, :created_bookings, :through => :spaces
+
+  has n, :spaces, through: Resource
+
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
