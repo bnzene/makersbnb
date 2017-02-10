@@ -82,8 +82,8 @@ end
   post '/booking_acknowledged' do
     # @space = Space.first(id: id)
     @user = current_user
-    @booking = Booking.create(space_id: params[:space_id], name: params[:name], user_id: params[current_user.id], date_from: params[:date_from], date_to: params[:date_to], status: [nil])
-    @id =  @booking.id
+    @booking = Booking.create(space_id: params[:space_id], name: params[:name], user_email: params[:user_email], date_from: params[:date_from], date_to: params[:date_to], status: params[:status])
+    # @id =  @booking.id
     erb :'/sessions/mybookings'
   end
 
@@ -92,7 +92,7 @@ end
   end
 
   post '/listingconfirmed' do
-    @space = Space.create(user_id: params[current_user.id], name: params[:name], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
+    @space = Space.create(user_id: current_user.id, name: params[:name], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
     @id =  @space.id
     if @space.save
       redirect "/listingconfirmed/#{@id}"
@@ -107,12 +107,27 @@ end
   end
 
   get '/mybookings' do
-    @bookings = Booking.all
     @user = self.current_user
-    p @created_bookings
-    p @received_bookings
-    @created_bookings = @user.created_bookings(@bookings) # not creating anything
-    @received_bookings = @user.received_bookings(@bookings) # not creating anything
+    p "HELLO"
+    @booking = Booking.all
+    p @booking
+    p "booking.all"
+    p @user.created_bookings
+    p "THERE"
+    p @user.received_bookings
+    p "BYE"
+    @created_bookings = []
+    @received_bookings = []
+    @created_bookings = @user.created_bookings # not creating anything
+    @received_bookings = @user.received_bookings # not creating anything
+    # p @created_bookings
+    # @created_bookings.each do |booking|
+    #   p booking
+    # end
+    # p @received_bookings
+    # @received_bookings.each do |booking|
+    #   p booking
+    # end
     erb :'/sessions/mybookings'
   end
 

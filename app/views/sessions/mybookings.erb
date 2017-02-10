@@ -14,8 +14,6 @@
         <h2>Requests I've made</h2>
           <div class="w3-container w3-white">
           <h3><%= @created_bookings %></h3>
-          <form action="/booking" method="post">Confirm</form>
-          <form action="/booking" method="post">Deny</form>
           </div>
       </div>
 
@@ -24,10 +22,8 @@
         <h2>Requests I've received</h2>
           <div class="w3-container w3-white">
           <h3><%= @received_bookings %></h3>
-          <form action="/booking" method="post">Confirm</form>
-            <input type="submit" value="confirm" name="status">
-          <form action="/booking" method="post">Deny</form>
-            <input type="submit" value="confirm" name="status">
+          <form action="/booking" method="post"><input type="submit" value="Confirm" name="status"></form>
+          <form action="/booking" method="post"><input type="submit" value="Deny" name="status"></form>
         </div>
       </div>
     </div>

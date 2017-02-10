@@ -1,8 +1,11 @@
 require 'bcrypt'
 
 class User
-
   include DataMapper::Resource
+
+  has n, :bookings, through: Resource
+  has n, :spaces, through: Resource
+  has n, :bookings, :through => :spaces
 
   attr_reader   :password
   attr_accessor :password_confirmation, :received_bookings, :created_bookings
@@ -11,9 +14,6 @@ class User
   property :email, String, required: true, unique: true
   property :password_digest, Text
 
-  has n, :spaces
-  has n, :bookings
-  has n, :bookings, :through => :spaces
 # has a table of spaces; that table has n bookings
 
   def password=(password)
@@ -36,9 +36,10 @@ class User
     end
   end
 
-  def self.created_bookings(bookings)
+  def created_bookings
+    @bookings = Booking.all
     @created_bookings = []
-    bookings.each do |booking|
+    @bookings.each do |booking|
       if booking.user_id == self.id
         @created_bookings << booking
       end
@@ -46,9 +47,10 @@ class User
     @created_bookings
   end
 
-  def self.received_bookings(bookings)
+  def received_bookings
+    @bookings = Booking.all
     @received_bookings = []
-    bookings.each do |booking|
+    @bookings.each do |booking|
       if booking.user_id != self.id
         @received_bookings << booking
       end
