@@ -2,10 +2,8 @@ ENV["RACK_ENV"] ||= "development"
 
 
 require 'sinatra/base'
-require_relative 'datamapper_setup'
+require_relative 'datamapper_setup.rb'
 require 'sinatra/flash'
-
-
 
 class Makersbnb < Sinatra::Base
 
@@ -36,7 +34,7 @@ end
              password_confirmation: params[:password_confirmation])
     if @user.save
     session[:user_id] = @user.id
-    redirect to('/myrequests')
+    redirect to('/spaces')
     else
       # flash.next[:notice] = "Password and confirmation password do not match"
       redirect ('/users/new')
@@ -51,7 +49,7 @@ end
     @user = User.authenticate(params[:email], params[:password])
     if @user
       session[:user_id] = @user.id
-      redirect to('/myrequests')
+      redirect to('/spaces')
     else
     # flash.now[:errors] = ['The email or password is incorrect']
       erb :'sessions/new'
@@ -75,17 +73,18 @@ end
     redirect "/spaces"
   end
 
-
-
   # post '/viewspace' do
   get '/spaces/:id' do
     @space = Space.first(id: params[:id])
     erb :'spaces/viewspace'
   end
 
-  get '/booking_acknowledged/:id' do
-
-    erb :booking_acknowledged
+  post '/booking_acknowledged' do
+    # @space = Space.first(id: id)
+    @user = current_user
+    @booking = Booking.create(space_id: params[:space_id], name: params[:name], user_id: params[current_user.id], date_from: params[:date_from], date_to: params[:date_to], status: [nil])
+    @id =  @booking.id
+    erb :'/sessions/mybookings'
   end
 
   get '/listspace' do
@@ -93,7 +92,7 @@ end
   end
 
   post '/listingconfirmed' do
-    @space = Space.create(name: params[:name], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
+    @space = Space.create(user_id: params[current_user.id], name: params[:name], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
     @id =  @space.id
     if @space.save
       redirect "/listingconfirmed/#{@id}"
@@ -108,7 +107,11 @@ end
   end
 
   get '/mybookings' do
-    erb :'/sessions/myrequests'
+    @bookings = Booking.all
+    @user = self.current_user
+    @received_bookings = @user.received_bookings(@bookings) # not creating anything
+    @created_bookings = @user.created_bookings(@bookings) # not creating anything
+    erb :'/sessions/mybookings'
   end
 
 

@@ -7,5 +7,13 @@
     <img src="/w3images/room_single.jpg" alt="Norway" style="width:100%">
   </body>
 
+  <form action="/booking_acknowledged" method="post">
+    <input type="hidden" value="@space.id" name="space_id">
+    <input type="hidden" value="@space.name" name="name">
+    <input type="hidden" value="@space.date_from" name="date_from">
+    <input type="hidden" value="@space.date_to" name="date_to">
+    <input type="hidden" value="nil" name="status">
+    <input type="submit" value="Book this space!">
+  </form>
 
 </html>

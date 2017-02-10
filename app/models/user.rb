@@ -5,22 +5,20 @@ class User
   include DataMapper::Resource
 
   attr_reader   :password
-  attr_accessor :password_confirmation
+  attr_accessor :password_confirmation, :received_bookings, :created_bookings
 
-  property :id,              Serial
+  property :id, Serial
   property :email, String, required: true, unique: true
   property :password_digest, Text
 
-  has n, :received_bookings, :through => :spaces
-  has n, :created_bookings, :through => :spaces
-
-  has n, :spaces, through: Resource
-
+  has n, :spaces
+  has n, :bookings
+  has n, :bookings, :through => :spaces
+# has a table of spaces; that table has n bookings
 
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
-
   end
 
   validates_presence_of :email
@@ -29,13 +27,29 @@ class User
   validates_uniqueness_of :email
 
   def self.authenticate(email, password)
-  user = first(email: email)
-  if user && BCrypt::Password.new(user.password_digest) == password
-    # return this user
-    user
-  else
-    nil
+    user = first(email: email)
+    if user && BCrypt::Password.new(user.password_digest) == password
+      # return this user
+      user
+    else
+      nil
+    end
   end
+
+  def self.received_bookings(bookings)
+    bookings.each do |booking|
+      if booking.customer_id != self.id
+        return booking
+      end
+    end
+  end
+
+  def self.created_bookings(bookings)
+    bookings.each do |booking|
+      if booking.customer_id == self.id
+        return booking
+      end
+    end
   end
 
 end
