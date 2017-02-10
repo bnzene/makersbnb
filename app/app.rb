@@ -6,7 +6,7 @@ require_relative 'datamapper_setup.rb'
 require 'sinatra/flash'
 
 class Makersbnb < Sinatra::Base
-
+ use Rack::MethodOverride
 register Sinatra::Flash
 
 enable :sessions
@@ -54,6 +54,11 @@ end
     # flash.now[:errors] = ['The email or password is incorrect']
       erb :'sessions/new'
     end
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    redirect to '/'
   end
 
   get '/spaces' do

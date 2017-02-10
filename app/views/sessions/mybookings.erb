@@ -13,7 +13,7 @@
       <div class="w3-third w3-margin-bottom">
         <h2>Requests I've made</h2>
           <div class="w3-container w3-white">
-          <h3><%= @created_bookings %></h3>
+        <%= @created_bookings.to_s %>
           <form action="/booking" method="post">Confirm</form>
           <form action="/booking" method="post">Deny</form>
           </div>
@@ -21,15 +21,15 @@
 
 <!-- requests others have made for my spaces -->
       <div class="w3-third w3-margin-bottom">
-        <h2>Requests I've received</h2>
-          <div class="w3-container w3-white">
-          <h3><%= @received_bookings %></h3>
-          <form action="/booking" method="post">Confirm</form>
-            <input type="submit" value="confirm" name="status">
-          <form action="/booking" method="post">Deny</form>
-            <input type="submit" value="confirm" name="status">
-        </div>
-      </div>
+          <h2>Requests I've received</h2>
+            <div class="w3-container w3-white">
+              <div class="w3-container w3-white">
+                <%= @received_bookings.to_s%>
+              </div>
+              <input type="submit" value="Confirm" name="status">
+              <input type="submit" value="Deny" name="status">
+            </div>
+       </div>
     </div>
   </body>
 </html>

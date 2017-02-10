@@ -27,7 +27,13 @@
               <li><a href="/spaces">Spaces</a> </li>
               <li><a href="/listspace">List Space</a> </li>
               <li><a href="/myrequests">My Requests</a> </li>
-              <li><a href="">Sign Out</a></li>
+              <li>
+                <form method='post' action='/sessions'>
+                  <input type='hidden' name='_method' value='delete'>
+                  <input type='submit' value='Sign out'>
+                </form>
+              </li>
+
             </ul>
             <% else %>
             <ul class="w3-navbar w3-white w3-large">
