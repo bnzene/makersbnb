@@ -36,20 +36,23 @@ class User
     end
   end
 
-  def self.received_bookings(bookings)
-    bookings.each do |booking|
-      if booking.customer_id != self.id
-        return booking
-      end
-    end
-  end
-
   def self.created_bookings(bookings)
+    @created_bookings = []
     bookings.each do |booking|
-      if booking.customer_id == self.id
-        return booking
+      if booking.user_id == self.id
+        @created_bookings << booking
       end
     end
+    @created_bookings
   end
 
+  def self.received_bookings(bookings)
+    @received_bookings = []
+    bookings.each do |booking|
+      if booking.user_id != self.id
+        @received_bookings << booking
+      end
+    end
+    @received_bookings
+  end
 end

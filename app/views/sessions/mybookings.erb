@@ -12,31 +12,24 @@
 <!--  requests I've made -->
       <div class="w3-third w3-margin-bottom">
         <h2>Requests I've made</h2>
-          <% @created_bookings.each do |booking| %>
-              <div class="w3-container w3-white">
-              <h3><%= booking.name %></h3>
-              <h6 class="w3-opacity">From <%= booking.price %></h6>
-              <p><%= booking.description %></p>
-              <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
-              <button class="w3-btn-block w3-margin-bottom">View Request</button>
-          <% end %>
-        </div>
+          <div class="w3-container w3-white">
+          <h3><%= @created_bookings %></h3>
+          <form action="/booking" method="post">Confirm</form>
+          <form action="/booking" method="post">Deny</form>
+          </div>
       </div>
 
 <!-- requests others have made for my spaces -->
       <div class="w3-third w3-margin-bottom">
         <h2>Requests I've received</h2>
-          <% @received_bookings.each do |booking| %>
-            <div class="w3-container w3-white">
-              <h3><%= booking.name %></h3>
-            <h6 class="w3-opacity">From <%= booking.price %></h6>
-            <p><%= booking.description %></p>
-            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
-            <button class="w3-btn-block w3-margin-bottom">View Request</button>
-          <% end %>
+          <div class="w3-container w3-white">
+          <h3><%= @received_bookings %></h3>
+          <form action="/booking" method="post">Confirm</form>
+            <input type="submit" value="confirm" name="status">
+          <form action="/booking" method="post">Deny</form>
+            <input type="submit" value="confirm" name="status">
         </div>
       </div>
     </div>
-
   </body>
 </html>

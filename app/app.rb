@@ -109,8 +109,10 @@ end
   get '/mybookings' do
     @bookings = Booking.all
     @user = self.current_user
-    @received_bookings = @user.received_bookings(@bookings) # not creating anything
+    p @created_bookings
+    p @received_bookings
     @created_bookings = @user.created_bookings(@bookings) # not creating anything
+    @received_bookings = @user.received_bookings(@bookings) # not creating anything
     erb :'/sessions/mybookings'
   end
 
