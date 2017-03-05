@@ -1,3 +1,7 @@
+# Makersbnb
+
+Team project guided by XP values and Agile principles.
+
 ### 1. High level description of specification
 ===================
 We would like a web application that allows users to list spaces they have available, and to hire spaces for the night.
