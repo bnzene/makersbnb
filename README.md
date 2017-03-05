@@ -2,6 +2,9 @@
 
 Team project guided by XP values and Agile principles.
 
+### Technologies
+Ruby app tested with RSpec; PSQL for database management; HTML/ERB/CSS for front end.
+
 ### 1. High level description of specification
 ===================
 We would like a web application that allows users to list spaces they have available, and to hire spaces for the night.
